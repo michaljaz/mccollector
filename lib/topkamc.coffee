@@ -10,7 +10,7 @@ module.exports=(bigcb)->
             soup=new JSSoup r.data
             result=soup.findAll "a","motd-link"
             for i in result
-                res.push i.find("strong").text
+                res.push i.find("strong").text.substr(0,i.find("strong").text.length-1)
             cb res
             return
         .catch (r)->
