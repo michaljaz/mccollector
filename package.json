@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start":"coffee index.coffee"
+    "start": "coffee index.coffee"
   },
   "dependencies": {
     "axios": "^0.21.1",
+    "fs": "0.0.1-security",
     "jssoup": "0.0.12"
   }
 }

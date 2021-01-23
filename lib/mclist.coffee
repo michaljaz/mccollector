@@ -25,12 +25,13 @@ module.exports=(bigcb)->
     for i in [1..50]
         ((i)->
             getPage i,(r)->
+                
                 numx+=r.length
                 loaded++
                 for j in r
                     xd[j]=true
                 if loaded is 50
                     bigcb xd
-                # console.log "#{i} , [#{loaded}/#{50}]",r
+                console.log "#{i} , [#{loaded}/#{50}]",r
                 return
         )(i)

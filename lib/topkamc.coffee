@@ -4,7 +4,8 @@ module.exports=(bigcb)->
 
 
     getPage=(num,cb)->
-        axios.get("https://www.topkamc.pl/page-#{num}").then (r)->
+        axios.get("https://www.topkamc.pl/page-#{num}")
+        .then (r)->
             res=[]
             soup=new JSSoup r.data
             result=soup.findAll "a","motd-link"
@@ -12,12 +13,16 @@ module.exports=(bigcb)->
                 res.push i.find("strong").text
             cb res
             return
+        .catch (r)->
+            cb []
+            return
         return
     xd={}
     loaded=0
     numx=0
     for j in [1..17]
         getPage j,(r)->
+            console.log r
             numx+=r.length
             loaded++
             for k in r
