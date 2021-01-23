@@ -15,8 +15,9 @@ module.exports=(bigcb)->
                         res.push i.find("div","col-md-7").find("h5").text
             cb res
             return
-        .catch (r)->
-            cb []
+        .catch (e)->
+            console.log "Rerunning..."
+            getPage num,cb
             return
         return
     xd={}
@@ -25,13 +26,12 @@ module.exports=(bigcb)->
     for i in [1..50]
         ((i)->
             getPage i,(r)->
-                
                 numx+=r.length
                 loaded++
                 for j in r
                     xd[j]=true
                 if loaded is 50
                     bigcb xd
-                console.log "#{i} , [#{loaded}/#{50}]",r
+                console.log "mclist [#{loaded}/#{50}]"
                 return
         )(i)

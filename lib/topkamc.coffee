@@ -13,8 +13,9 @@ module.exports=(bigcb)->
                 res.push i.find("strong").text.substr(0,i.find("strong").text.length-1)
             cb res
             return
-        .catch (r)->
-            cb []
+        .catch (e)->
+            console.log "Rerunning..."
+            getPage num,cb
             return
         return
     xd={}
@@ -22,9 +23,9 @@ module.exports=(bigcb)->
     numx=0
     for j in [1..17]
         getPage j,(r)->
-            console.log r
             numx+=r.length
             loaded++
+            console.log "topkamc [#{loaded}/17]"
             for k in r
                 xd[k]=true
             if loaded is 17

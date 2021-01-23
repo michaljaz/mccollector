@@ -6,8 +6,13 @@ require("./lib/mclist.coffee")((r)->
     require("./lib/topkamc.coffee")((rx)->
         for j of rx
             result[j]=true
-        fs.writeFileSync "result.json",JSON.stringify(result,null,4)
-        console.log result
+        require("./lib/minecraftservers.coffee")((rxx)->
+            for k of rxx
+                result[k]=true
+            fs.writeFileSync "result.json",JSON.stringify(result,null,4)
+            console.log result
+            return
+        )
         return
     )
     return
